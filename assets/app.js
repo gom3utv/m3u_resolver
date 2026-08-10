@@ -1,5 +1,5 @@
 /* Set this after deploying your Cloudflare Worker */
-const WORKER_URL = "https://YOUR-WORKER.workers.dev";
+const WORKER_URL = "https://m3ureslover.gom3u-site.workers.dev/";
 
 const state={channels:[],filtered:[]};
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
