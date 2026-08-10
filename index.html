@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M3U Source Resolver</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div><h1>M3U Source Resolver</h1><p>GitHub Pages + Cloudflare Worker</p></div>
+</header>
+<main class="container">
+<section class="card input-card">
+  <div class="tabs">
+    <button class="tab active" data-tab="urlTab">M3U URL</button>
+    <button class="tab" data-tab="fileTab">Upload M3U</button>
+    <button class="tab" data-tab="pasteTab">Paste M3U</button>
+  </div>
+  <div id="urlTab" class="tab-panel active">
+    <div class="row">
+      <input id="m3uUrl" type="url" placeholder="https://example.com/playlist.m3u">
+      <button id="loadUrlBtn" class="primary">Load Playlist</button>
+    </div>
+  </div>
+  <div id="fileTab" class="tab-panel"><input id="m3uFile" type="file" accept=".m3u,.m3u8,text/plain"></div>
+  <div id="pasteTab" class="tab-panel">
+    <textarea id="m3uText" rows="8" placeholder="#EXTM3U&#10;#EXTINF:-1 tvg-logo=&quot;https://example.com/logo.png&quot;,Example TV&#10;https://example.com/live/example.m3u8"></textarea>
+    <button id="parsePasteBtn" class="primary">Parse Playlist</button>
+  </div>
+  <div class="notice"><b>Note:</b> This tool resolves public HTTP redirects. A true proxy/relay that hides its upstream source cannot be reversed from the outside.</div>
+</section>
+
+<section class="toolbar card">
+  <div class="stats"><span id="totalCount">0 channels</span><span id="selectedCount">0 selected</span></div>
+  <div class="actions">
+    <input id="search" type="search" placeholder="Search channel...">
+    <button id="resolveSelected" class="primary" disabled>Resolve Selected</button>
+    <button id="resolveAll" class="secondary" disabled>Resolve All</button>
+    <button id="exportM3u" class="secondary" disabled>Export M3U</button>
+  </div>
+</section>
+
+<section class="card table-wrap">
+<table>
+<thead><tr><th class="check-col"><input id="selectAll" type="checkbox"></th><th>Channel</th><th>Input URL</th><th>Resolved / Original</th><th>Status</th><th></th></tr></thead>
+<tbody id="channelBody"><tr><td colspan="6" class="empty">Load an M3U playlist to begin.</td></tr></tbody>
+</table>
+</section>
+</main>
+<div id="toast" class="toast"></div>
+<script src="assets/app.js"></script>
+</body>
+</html>
